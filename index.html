@@ -1,17 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>E-Commerce Product Cards</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 15px;
+    }
+    .card-body h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    .card-body p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .order-btn {
+      background-color: #25D366;
+      color: white;
+      text-align: center;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .order-btn:hover {
+      background-color: #20b858;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <a href="https://api.whatsapp.com/send?phone=923321360570&text=Assalamualaikum%20Zawwar%20Bhai%2C%20Main%20aapki%20Digital%20Marketing%20Services%20mein%20interested%20hoon." 
-   target="_blank" 
-   style="background-color: #25D366; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">
-   📞 Message on WhatsApp
-</a>
 
-    
+  <div class="cards-container">
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Product Image">
+      <div class="card-body">
+        <h3>Oud Touch Perfume</h3>
+        <p>Long-lasting Arabic fragrance. 50ml Bottle.</p>
+        <input type="text" id="name1" placeholder="Your Name" required>
+        <input type="number" id="qty1" placeholder="Quantity" required>
+        <button class="order-btn" onclick="sendOrder('Oud Touch Perfume', 'name1', 'qty1')">📦 Order Now</button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Product Image">
+      <div class="card-body">
+        <h3>Musk Rose Attar</h3>
+        <p>Fresh floral scent. Alcohol-free. 12ml bottle.</p>
+        <input type="text" id="name2" placeholder="Your Name" required>
+        <input type="number" id="qty2" placeholder="Quantity" required>
+        <button class="order-btn" onclick="sendOrder('Musk Rose Attar', 'name2', 'qty2')">📦 Order Now</button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Product Image">
+      <div class="card-body">
+        <h3>Gift Box Combo</h3>
+        <p>Includes 3 attars of your choice + packaging.</p>
+        <input type="text" id="name3" placeholder="Your Name" required>
+        <input type="number" id="qty3" placeholder="Quantity" required>
+        <button class="order-btn" onclick="sendOrder('Gift Box Combo', 'name3', 'qty3')">📦 Order Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function sendOrder(productName, nameId, qtyId) {
+      const name = document.getElementById(nameId).value;
+      const quantity = document.getElementById(qtyId).value;
+
+      if (!name || !quantity) {
+        alert("Please fill in your name and quantity.");
+        return;
+      }
+
+      const message = `Hello Zawwar Bhai,%0AMy name is ${name}.%0AI would like to place an order for "${productName}".%0AQuantity: ${quantity}.%0APlease guide me through the next steps.`;
+      const url = `https://api.whatsapp.com/send?phone=923321360570&text=${message}`;
+      window.open(url, '_blank');
+    }
+  </script>
+
 </body>
 </html>
